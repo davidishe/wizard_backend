@@ -1,0 +1,18 @@
+[
+  {
+    "Name": "Давид Акобия",
+    "IsEnabled": true
+  },
+  {  
+    "Name": "Валерия Новицкая",
+    "IsEnabled": true
+  },
+  {  
+    "Name": "Кирилл Галкин",
+    "IsEnabled": false
+  },
+  {  
+    "Name": "Артем Сергиенко",
+    "IsEnabled": true
+  }
+]

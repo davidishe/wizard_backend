@@ -1,0 +1,14 @@
+[
+  {
+    "MemberId": 1,
+    "HeadManagerPositionId": 2
+  },
+  {
+    "MemberId": 2,
+    "HeadManagerPositionId": 1
+  },
+  {
+    "MemberId": 3,
+    "HeadManagerPositionId": 2
+  }
+]

@@ -1,0 +1,12 @@
+.vscode
+bin
+obj
+*.db
+*.png
+*.md
+*.db
+appsettings.json
+wwwroot
+publish
+Assets
+Migrations

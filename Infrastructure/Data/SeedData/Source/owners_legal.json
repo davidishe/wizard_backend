@@ -1,0 +1,50 @@
+[
+  {
+    "ShareValue": 40,
+    "ShortName": "ООО Чебурашка",
+    "InnNumber": "4008555657",
+    "OgrnNumber": "4056585501520",
+    "MainOkved": "55.32",
+    "LegalAddress": "улица Космонавтов, дом 41"
+  },
+  {  
+    "ShareValue": 40,
+    "ShortName": "ООО Иванов и товарищи",
+    "InnNumber": "4008555657",
+    "OgrnNumber": "4056585501520",
+    "MainOkved": "35.12",
+    "LegalAddress": "улица Залетная, дом 12"
+  },
+  {  
+    "ShareValue": 40,
+    "ShortName": "ООО Эдельвейс",
+    "InnNumber": "4008555657",
+    "OgrnNumber": "4056585501520",
+    "MainOkved": "65.32",
+    "LegalAddress": "улица Полетная, дом 11"
+  },
+  {  
+    "ShareValue": 40,
+    "ShortName": "ООО Торт",
+    "InnNumber": "4008555657",
+    "OgrnNumber": "4056585501520",
+    "MainOkved": "5.32",
+    "LegalAddress": "улица Театральная, дом 51"
+  },
+  {  
+    "ShareValue": 40,
+    "ShortName": "ООО Пирожок",
+    "InnNumber": "4008555657",
+    "OgrnNumber": "4056585501520",
+    "MainOkved": "55.32",
+    "LegalAddress": "улица Бабушкинская, дом 15"
+  },
+  {  
+    "ShareValue": 40,
+    "ShortName": "ООО Чайное дерево",
+    "InnNumber": "4008555657",
+    "OgrnNumber": "4056585501520",
+    "MainOkved": "56.24",
+    "LegalAddress": "улица Заморская, дом 5"
+  }
+]
