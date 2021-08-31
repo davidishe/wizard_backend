@@ -1,1 +1,1 @@
-# chtole_bot_backend
+# Backend бота Чтоле
