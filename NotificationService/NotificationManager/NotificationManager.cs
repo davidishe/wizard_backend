@@ -1,9 +1,12 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Core.Dtos;
 using Core.Models;
 using Infrastructure.Data.Repos.GenericRepository;
+using Infrastructure.Data.Spec;
 using Infrastructure.Services.TelegramService;
 using Microsoft.Extensions.Logging;
 
@@ -13,26 +16,30 @@ namespace NotificationService.Notification
   public class NotificationManager : INotificationManager
   {
     private readonly ITelegramService _telegramService;
-    private readonly IGenericRepository<Item> _itemRepo;
+    private readonly IGenericRepository<Item> _itemsRepo;
+    private readonly IGenericRepository<Member> _membersRepo;
     private readonly ILogger<NotificationManager> _logger;
 
 
     public NotificationManager(
       ITelegramService telegrammService,
       ILogger<NotificationManager> logger,
-      IGenericRepository<Item> itemRepo
+      IGenericRepository<Item> itemRepo,
+      IGenericRepository<Member> membersRepo
+
     )
     {
       _telegramService = telegrammService;
-      _itemRepo = itemRepo;
+      _itemsRepo = itemRepo;
       _logger = logger;
+      _membersRepo = membersRepo;
     }
 
-    public Task Execute(string jobId)
+    public Task ExecuteRegularJob(string jobId)
     {
-      var items = _itemRepo.ListAllAsync().Result;
+      var items = _itemsRepo.ListAllAsync().Result;
       var item = items.Where(x => x.JobId == jobId).FirstOrDefault();
-      var messageToSend = GetRegularMessageWithSpeaker(item.MessageText);
+      var messageToSend = GetRegularMessageWithSpeakerAsync(item.MessageText).Result;
       _logger.LogInformation($"{DateTime.Now} было отправлено сообщение {messageToSend} в чат {item.ChatId}");
 
       DayOfWeek dayToday = DateTime.Now.DayOfWeek;
@@ -43,18 +50,47 @@ namespace NotificationService.Notification
     }
 
 
-
-    private string GetRegularMessageWithSpeaker(string message)
+    public Task ExecuteHappyBirthdayJob(string jobId)
     {
-      string[] members = new string[] { "Валерия Новицкая", "Артем Сергиенко", "Давид Акобия" };
+      var items = _itemsRepo.ListAllAsync().Result;
+      var item = items.Where(x => x.JobId == jobId).FirstOrDefault();
+      var membersWithBirthday = GetMessageForBirthdayMembers().Result;
+
+      foreach (var member in membersWithBirthday)
+      {
+        var messageToSend = GetRegularMessageWithSpeakerAsync(item.MessageText).Result;
+        _logger.LogInformation($"{DateTime.Now} было отправлено сообщение {messageToSend} в чат {item.ChatId}");
+        _telegramService.SendMessage(item.ChatId, messageToSend);
+
+      }
+
+
+      return Task.CompletedTask;
+    }
+
+
+    private async Task<Member[]> GetMessageForBirthdayMembers()
+    {
+
+      var spec = new MemberSpecification();
+      var members = await _membersRepo.ListAsync(spec);
+      var memberWithBirthday = members.Where(x => x.BirthdayDate.Date.Month == DateTime.Now.Date.Month && x.BirthdayDate.Date.Day == DateTime.Now.Date.Day);
+      var membersArray = memberWithBirthday.ToArray();
+      return membersArray;
+    }
+
+
+    private async Task<string> GetRegularMessageWithSpeakerAsync(string message)
+    {
+
+      var spec = new MemberSpecification();
+      var members = await _membersRepo.ListAsync(spec);
+      var membersArray = members.ToArray();
       var rnd = new Random();
-      var rndIndex = rnd.Next(members.Length);
+      var rndIndex = rnd.Next(membersArray.Length);
 
-      string output = message.Replace("{человек}", members[rndIndex]);
+      string output = message.Replace("{человек}", membersArray[rndIndex].Name);
       Console.WriteLine(output);
-
-      // TODO: ходить в базу и забирать список сотрудников
-      // TODO: выбирать случайного и подставлять в регекс
       return output;
     }
 

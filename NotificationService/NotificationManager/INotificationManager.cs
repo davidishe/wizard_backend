@@ -5,7 +5,10 @@ namespace NotificationService.Notification
 {
   public interface INotificationManager
   {
-    Task Execute(string jobId);
+    Task ExecuteRegularJob(string jobId);
+    Task ExecuteHappyBirthdayJob(string jobId);
+
+
 
   }
 

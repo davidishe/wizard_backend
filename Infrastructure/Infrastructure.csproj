@@ -4,7 +4,7 @@
     <Nullable>annotations</Nullable>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Core\Core.csproj"/>
+    <ProjectReference Include="..\Bot.Core\Core.csproj"/>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Dadata" Version="20.10.0"/>

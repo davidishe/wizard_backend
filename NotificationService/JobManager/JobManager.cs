@@ -26,13 +26,13 @@ namespace NotificationService.JobManagment
     {
       var timeZone = TimeZone.CurrentTimeZone;
       var jobId = Guid.NewGuid().ToString();
-      RecurringJob.AddOrUpdate(jobId, () => _notificationManager.Execute(jobId), cronExpression, TimeZoneInfo.Local);
+      RecurringJob.AddOrUpdate(jobId, () => _notificationManager.ExecuteRegularJob(jobId), cronExpression, TimeZoneInfo.Local);
       return jobId;
     }
 
     public bool UpdateRecurringJob(string jobId, string cronExpression)
     {
-      RecurringJob.AddOrUpdate(jobId, () => _notificationManager.Execute(jobId), cronExpression, TimeZoneInfo.Local);
+      RecurringJob.AddOrUpdate(jobId, () => _notificationManager.ExecuteRegularJob(jobId), cronExpression, TimeZoneInfo.Local);
       return true;
     }
 

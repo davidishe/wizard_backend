@@ -33,19 +33,6 @@ namespace Infrastructure.Data.SeedData
           await context.SaveChangesAsync();
         }
 
-        if (!context.HeadManagerPositions.Any())
-        {
-          var itemsData = File.ReadAllText(path + @"/Data/SeedData/Source/head_manager_positions.json");
-          var items = JsonSerializer.Deserialize<List<HeadManagerPosition>>(itemsData);
-          foreach (var item in items)
-          {
-            context.HeadManagerPositions.Add(item);
-          }
-          await context.SaveChangesAsync();
-        }
-
-
-
 
         if (!context.ItemTypes.Any())
         {
@@ -81,29 +68,6 @@ namespace Infrastructure.Data.SeedData
           await context.SaveChangesAsync();
         }
 
-        if (!context.OwnerLegals.Any())
-        {
-          var itemsData = File.ReadAllText(path + @"/Data/SeedData/Source/owners_legal.json");
-          var items = JsonSerializer.Deserialize<List<OwnerLegal>>(itemsData);
-          foreach (var item in items)
-          {
-            context.OwnerLegals.Add(item);
-          }
-          await context.SaveChangesAsync();
-        }
-
-        if (!context.HeadManagers.Any())
-        {
-          var itemsData = File.ReadAllText(path + @"/Data/SeedData/Source/head_managers.json");
-          var items = JsonSerializer.Deserialize<List<HeadManager>>(itemsData);
-          foreach (var item in items)
-          {
-            // item.OwnerIndividual = context.OwnerIndividuals.Where(x => x.Id == item.OwnerIndividualId).FirstOrDefault();
-            // item.HeadManagerPosition = context.HeadManagerPositions.Where(x => x.Id == item.HeadManagerPositionId).FirstOrDefault();
-            context.HeadManagers.Add(item);
-          }
-          await context.SaveChangesAsync();
-        }
 
         if (!context.Items.Any())
         {
