@@ -5,8 +5,10 @@
     <Nullable>annotations</Nullable>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj"/>
+    <ProjectReference Include="..\Bot.Infrastructure\Infrastructure.csproj"/>
     <ProjectReference Include="..\Bot.Core\Core.csproj"/>
+    <ProjectReference Include="..\Bot.NotificationService\NotificationService.csproj"/>
+
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Dadata" Version="20.10.0"/>
@@ -41,9 +43,5 @@
     <Folder Include="Assets\Images\**"/>
     <Folder Include="Assets\Documents\"/>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj"/>
-    <ProjectReference Include="..\NotificationService\NotificationService.csproj"/>
 
-  </ItemGroup>
 </Project>
