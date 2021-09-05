@@ -53,6 +53,10 @@ namespace WebAPI.Controllers
       _userManager = userManager;
     }
 
+    public MembersController()
+    {
+    }
+
 
     #region 1. Get products functionality
 
@@ -103,11 +107,17 @@ namespace WebAPI.Controllers
     [AllowAnonymous]
     [HttpGet]
     [Route("regions")]
-    public async Task<ActionResult<IReadOnlyList<ItemType>>> GetProductRegionsByIdAsync()
+    public async Task<ActionResult<IReadOnlyList<ItemType>>> GetRegionsAsync()
     {
-      var product = await _itemRegionRepo.ListAllAsync();
-      await SetTimeOut();
-      return Ok(product);
+      var items = new List<Region>();
+      var region1 = new Region { Name = "Вологда" };
+      var region2 = new Region { Name = "Рязань" };
+      var region3 = new Region { Name = "Киров" };
+
+      items.Add(region1);
+      items.Add(region2);
+      items.Add(region3);
+      return Ok(items);
     }
     #endregion
 
