@@ -65,6 +65,6 @@ namespace WebAPI.Controllers
 
 
 
-// https://api.telegram.org/bot1927355326:AAGtnIONVi30ts2sTemjIRWTSD5xWHvWQsE/setwebhook?url=https://4883-128-68-90-226.ngrok.io/api/message/update
+// https://api.telegram.org/bot1927355326:AAGtnIONVi30ts2sTemjIRWTSD5xWHvWQsE/setwebhook?url=https://23a3-92-118-168-70.ngrok.io/api/message/update
 
 // https://api.telegram.org/bot1932370800:AAH8kyNL9VYMWh-XcJJqcE_e88W56G1QCWM/setwebhook?url=https://bot.karabaradaram.ru/api/message/update

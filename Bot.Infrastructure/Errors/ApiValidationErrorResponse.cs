@@ -9,6 +9,6 @@ namespace Infrastructure.Errors
 
     }
 
-    public IEnumerable<string> Errors { get; set; }
+    public IList<string> Errors { get; set; }
   }
 }

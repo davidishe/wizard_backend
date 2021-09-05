@@ -1,21 +1,21 @@
 [
   {
-    "Name": "Давид Акобия",
+    "Name": "Дмитрий Даниилов",
     "BirthdayDate": "1111-09-05T18:25:43.511Z",
     "IsEnabled": true
   },
   {  
-    "Name": "Валерия Новицкая",
+    "Name": "Валерия Иванова",
     "BirthdayDate": "1111-09-03T18:25:43.511Z",
     "IsEnabled": true
   },
   {  
-    "Name": "Кирилл Галкин",
+    "Name": "Кирилл Кириллов",
     "BirthdayDate": "1111-09-01T18:25:43.511Z",
     "IsEnabled": false
   },
   {
-    "Name": "Артем Сергиенко",
+    "Name": "Константин Константинопольский",
     "BirthdayDate": "1111-09-02T18:25:43.511Z",
     "IsEnabled": false
   }

@@ -17,6 +17,8 @@ using System;
 using Core.Extensions;
 using NotificationService.JobManagment;
 using NotificationService.Notification;
+using Bot.Core.Validators;
+using Infrastructure.Errors;
 
 namespace WebAPI.Controllers
 {
@@ -32,9 +34,6 @@ namespace WebAPI.Controllers
     private readonly IGenericRepository<BankOffice> _officeRepo;
     private readonly IMapper _mapper;
     private readonly UserManager<HavenAppUser> _userManager;
-    private readonly IJobManager _jobManager;
-    private readonly INotificationManager _notificationManager;
-
 
 
     public MembersController(
@@ -43,9 +42,7 @@ namespace WebAPI.Controllers
       IGenericRepository<ItemSubType> productRegionRepo,
       IGenericRepository<BankOffice> officeRepo,
       IMapper mapper,
-      UserManager<HavenAppUser> userManager,
-      IJobManager jobManager,
-      INotificationManager notificationManager
+      UserManager<HavenAppUser> userManager
     )
     {
       _membersRepo = membersRepo;
@@ -54,8 +51,6 @@ namespace WebAPI.Controllers
       _mapper = mapper;
       _officeRepo = officeRepo;
       _userManager = userManager;
-      _jobManager = jobManager;
-      _notificationManager = notificationManager;
     }
 
 
@@ -80,7 +75,7 @@ namespace WebAPI.Controllers
     [AllowAnonymous]
     [HttpGet("{id}")]
     [Route("getbyid")]
-    public async Task<ActionResult<MemberDto>> GetProductByIdAsync([FromQuery] int id)
+    public async Task<ActionResult<MemberDto>> GetByIdAsync([FromQuery] int id)
     {
       var spec = new MemberSpecification(id);
       var item = await _membersRepo.GetEntityWithSpec(spec);
@@ -90,7 +85,6 @@ namespace WebAPI.Controllers
       return resultDto;
 
     }
-
 
 
     #endregion
@@ -123,7 +117,7 @@ namespace WebAPI.Controllers
     */
 
 
-    [Authorize]
+    [AllowAnonymous]
     [HttpPost]
     [Route("create")]
     public async Task<ActionResult<Member>> Create(MemberDto itemDto)
@@ -131,6 +125,18 @@ namespace WebAPI.Controllers
 
       var user = await _userManager.FindByClaimsCurrentUser(HttpContext.User);
       await SetTimeOut();
+
+      MemberValidator validator = new MemberValidator();
+      var validationResults = validator.Validate(itemDto);
+
+      //TODO: реализовать возврат ошибок в виде error response object
+      if (validationResults.IsValid == false)
+      {
+        foreach (var errorResult in validationResults.Errors)
+        {
+          return Ok($"{errorResult.PropertyName}: {errorResult.ErrorMessage}");
+        }
+      }
 
 
       var item = new Member
