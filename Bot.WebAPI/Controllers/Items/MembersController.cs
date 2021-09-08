@@ -53,9 +53,9 @@ namespace WebAPI.Controllers
       _userManager = userManager;
     }
 
-    public MembersController()
-    {
-    }
+    // public MembersController()
+    // {
+    // }
 
 
     #region 1. Get products functionality
@@ -64,7 +64,7 @@ namespace WebAPI.Controllers
     [AllowAnonymous]
     [HttpGet]
     [Route("all")]
-    public async Task<ActionResult<Member>> GetAll()
+    public async Task<ActionResult<IReadOnlyList<MemberDto>>> GetAllMembers()
     {
 
       var spec = new MemberSpecification();
@@ -107,16 +107,9 @@ namespace WebAPI.Controllers
     [AllowAnonymous]
     [HttpGet]
     [Route("regions")]
-    public async Task<ActionResult<IReadOnlyList<ItemType>>> GetRegionsAsync()
+    public async Task<ActionResult<List<Region>>> GetRegionsAsync()
     {
-      var items = new List<Region>();
-      var region1 = new Region { Name = "Вологда" };
-      var region2 = new Region { Name = "Рязань" };
-      var region3 = new Region { Name = "Киров" };
-
-      items.Add(region1);
-      items.Add(region2);
-      items.Add(region3);
+      Region[] items = new Region[] { new Region { Name = "Вологда" }, new Region { Name = "Калуга" }, new Region { Name = "Пенза" } };
       return Ok(items);
     }
     #endregion
