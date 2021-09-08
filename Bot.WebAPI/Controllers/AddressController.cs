@@ -9,8 +9,11 @@ using Microsoft.AspNetCore.Mvc;
 namespace WebAPI.Controllers
 {
 
+
   [AllowAnonymous]
-  public class AddressController : BaseApiController
+  [ApiController]
+  [Route("api/[controller]")]
+  public class AddressController : ControllerBase
   {
 
     private readonly string token = "5f6e87441948ba1d00eb29d7cf605873cd17c722";

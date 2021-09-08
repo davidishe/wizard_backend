@@ -28,8 +28,8 @@ namespace WebAPI.Controllers
 
     private readonly IGenericRepository<Item> _itemsRepo;
     private readonly IGenericRepository<ItemType> _itemTypeRepo;
-    private readonly IGenericRepository<ItemSubType> _itemRegionRepo;
-    private readonly IGenericRepository<BankOffice> _officeRepo;
+    private readonly IGenericRepository<ItemSubType> _itemSubTypeRepo;
+    private readonly IGenericRepository<Office> _officeRepo;
     private readonly IMapper _mapper;
     private readonly UserManager<HavenAppUser> _userManager;
     private readonly IJobManager _jobManager;
@@ -40,8 +40,8 @@ namespace WebAPI.Controllers
     public ItemsController(
       IGenericRepository<Item> productsRepo,
       IGenericRepository<ItemType> productTypeRepo,
-      IGenericRepository<ItemSubType> productRegionRepo,
-      IGenericRepository<BankOffice> officeRepo,
+      IGenericRepository<ItemSubType> itemSubTypeRepo,
+      IGenericRepository<Office> officeRepo,
       IMapper mapper,
       UserManager<HavenAppUser> userManager,
       IJobManager jobManager,
@@ -50,7 +50,7 @@ namespace WebAPI.Controllers
     {
       _itemsRepo = productsRepo;
       _itemTypeRepo = productTypeRepo;
-      _itemRegionRepo = productRegionRepo;
+      _itemSubTypeRepo = itemSubTypeRepo;
       _mapper = mapper;
       _officeRepo = officeRepo;
       _userManager = userManager;
@@ -73,7 +73,7 @@ namespace WebAPI.Controllers
       var specForCount = new DocForCountSpecification(userParams);
       var totalItems = await _itemsRepo.CountAsync(specForCount);
 
-      var spec = new DocSpecification(userParams);
+      var spec = new ItemSpecification(userParams);
 
       var products = await _itemsRepo.ListAsync(spec);
       var data = _mapper.Map<IReadOnlyList<Item>, IReadOnlyList<ItemDto>>(products);
@@ -91,7 +91,7 @@ namespace WebAPI.Controllers
 
       var specForCount = new DocForCountSpecification(userParams);
       var totalItems = await _itemsRepo.CountAsync(specForCount);
-      var spec = new DocSpecification(userParams);
+      var spec = new ItemSpecification(userParams);
       var items = await _itemsRepo.ListAsync(spec);
 
       var data = _mapper.Map<IReadOnlyList<Item>, IReadOnlyList<ItemDto>>(items);
@@ -105,7 +105,7 @@ namespace WebAPI.Controllers
     [Route("getbyid")]
     public async Task<ActionResult<ItemDto>> GetProductByIdAsync([FromQuery] int id)
     {
-      var spec = new DocSpecification(id);
+      var spec = new ItemSpecification(id);
       var item = await _itemsRepo.GetEntityWithSpec(spec);
       var cronExpression = _jobManager.GetCronExpressionByJobId(item.JobId);
       await SetTimeOut();
@@ -138,19 +138,21 @@ namespace WebAPI.Controllers
     [Route("types")]
     public async Task<ActionResult<IReadOnlyList<ItemType>>> GetProductTypesByIdAsync()
     {
-      var product = await _itemTypeRepo.ListAllAsync();
+      var spec = new BaseSpecification<ItemType>();
+      var product = await _itemTypeRepo.ListAsync(spec);
       await SetTimeOut();
       return Ok(product);
     }
 
     [AllowAnonymous]
     [HttpGet]
-    [Route("regions")]
-    public async Task<ActionResult<IReadOnlyList<ItemType>>> GetProductRegionsByIdAsync()
+    [Route("subtypes")]
+    public async Task<ActionResult<IReadOnlyList<ItemSubType>>> GetByIdAsync()
     {
-      var product = await _itemRegionRepo.ListAllAsync();
+      var spec = new BaseSpecification<ItemSubType>();
+      var item = await _itemSubTypeRepo.ListAsync(spec);
       await SetTimeOut();
-      return Ok(product);
+      return Ok(item);
     }
     #endregion
 

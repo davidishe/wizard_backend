@@ -39,7 +39,8 @@ namespace WebAPI.Controllers
     [Route("all")]
     public async Task<ActionResult<IReadOnlyList<ItemType>>> GetProductRegionsByIdAsync()
     {
-      var items = await _typesRepo.ListAllAsync();
+      var spec = new BaseSpecification<ItemType>();
+      var items = await _typesRepo.ListAsync(spec);
       await SetTimeOut();
       return Ok(items);
     }

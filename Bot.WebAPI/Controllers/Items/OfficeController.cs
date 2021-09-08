@@ -17,41 +17,12 @@ namespace WebAPI.Controllers
 
 
   [AllowAnonymous]
-  public class OfficeController : BaseApiController
+  public class OfficeController : BaseController<Office>
   {
 
-
-    private readonly IGenericRepository<BankOffice> _officeRepo;
-    private readonly IMapper _mapper;
-
-
-    public OfficeController(IGenericRepository<BankOffice> repo, IMapper mapper)
+    public OfficeController(IGenericRepository<Office> context) : base(context)
     {
-      _officeRepo = repo;
-      _mapper = mapper;
     }
-
-
-    [AllowAnonymous]
-    [HttpGet]
-    [Route("all")]
-    public async Task<ActionResult<IReadOnlyList<BankOffice>>> GetItemsAsync()
-    {
-      var items = await _officeRepo.ListAllAsync();
-      return Ok(items);
-    }
-
-
-    [AllowAnonymous]
-    [HttpPost]
-    [Route("create")]
-    public async Task<ActionResult<IReadOnlyList<BankOffice>>> CreateItemAsync(BankOffice item)
-    {
-      var product = await _officeRepo.AddEntityAsync(item);
-      return Ok(product);
-    }
-
-
 
 
   }

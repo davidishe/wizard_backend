@@ -31,7 +31,7 @@ namespace WebAPI.Controllers
     private readonly IGenericRepository<Member> _membersRepo;
     private readonly IGenericRepository<ItemType> _itemTypeRepo;
     private readonly IGenericRepository<ItemSubType> _itemRegionRepo;
-    private readonly IGenericRepository<BankOffice> _officeRepo;
+    private readonly IGenericRepository<Office> _officeRepo;
     private readonly IMapper _mapper;
     private readonly UserManager<HavenAppUser> _userManager;
 
@@ -40,7 +40,7 @@ namespace WebAPI.Controllers
       IGenericRepository<Member> membersRepo,
       IGenericRepository<ItemType> productTypeRepo,
       IGenericRepository<ItemSubType> productRegionRepo,
-      IGenericRepository<BankOffice> officeRepo,
+      IGenericRepository<Office> officeRepo,
       IMapper mapper,
       UserManager<HavenAppUser> userManager
     )
@@ -52,11 +52,6 @@ namespace WebAPI.Controllers
       _officeRepo = officeRepo;
       _userManager = userManager;
     }
-
-    // public MembersController()
-    // {
-    // }
-
 
     #region 1. Get products functionality
 
@@ -94,15 +89,6 @@ namespace WebAPI.Controllers
     #endregion
 
     #region 2. Get regions & types functionality
-    [AllowAnonymous]
-    [HttpGet]
-    [Route("types")]
-    public async Task<ActionResult<IReadOnlyList<ItemType>>> GetProductTypesByIdAsync()
-    {
-      var product = await _itemTypeRepo.ListAllAsync();
-      await SetTimeOut();
-      return Ok(product);
-    }
 
     [AllowAnonymous]
     [HttpGet]
@@ -155,6 +141,9 @@ namespace WebAPI.Controllers
       return Ok(itemToReturn);
 
     }
+
+
+
 
 
     [AllowAnonymous]
