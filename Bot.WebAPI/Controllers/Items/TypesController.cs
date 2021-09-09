@@ -6,11 +6,11 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Infrastructure.Data.Repos.GenericRepository;
-using Infrastructure.Data.Spec;
 using Core.Dtos;
 using Infrastructure.Helpers;
 using Core.Models;
+using Infrastructure.Database;
+using Bot.Infrastructure.Specifications;
 
 namespace WebAPI.Controllers
 {

@@ -6,10 +6,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Infrastructure.Data.Contexts;
-using Infrastructure.Data.SeedData;
 using Core.Identity;
 using Core.Models.Identity;
+using Bot.Infrastructure.Database;
+using Infrastructure.Database.SeedData;
+using Bot.Identity;
+using Bot.Identity.Database;
+using Identity.Database.SeedData;
 
 namespace WebAPI
 {
@@ -33,7 +36,7 @@ namespace WebAPI
           await IdentityContextSeed.SeedUsersAsync(userManager, roleManager, loggerFactory, identityContext);
           await identityContext.Database.MigrateAsync();
 
-          var dataContext = services.GetRequiredService<DataContext>();
+          var dataContext = services.GetRequiredService<AppDbContext>();
           await DataContextSeed.SeedDataAsync(dataContext, loggerFactory);
           await dataContext.Database.MigrateAsync();
 

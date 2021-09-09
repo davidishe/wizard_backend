@@ -1,10 +1,11 @@
 using System.Linq;
 using System.Security.Claims;
 using AutoMapper;
+using Bot.Infrastructure.Specifications;
 using Core.Dtos;
 using Core.Identity;
 using Core.Models;
-using Infrastructure.Data.Contexts;
+using Infrastructure.Database;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 
@@ -19,21 +20,22 @@ namespace WebAPI.Helpers
     }
 
     private readonly UserManager<HavenAppUser> _userManager;
-    private readonly DataContext _context;
+    private readonly IGenericRepository<Office> _officeRepo;
 
 
     public UserBankOfficeResolver(
       UserManager<HavenAppUser> userManager,
-      DataContext context
+      IGenericRepository<Office> officeRepo
     )
     {
       _userManager = userManager;
-      _context = context;
+      _officeRepo = officeRepo;
     }
 
-    public string Resolve(HavenAppUser source, UserToReturnDto destination, string destMember, ResolutionContext context)
+    public string Resolve(HavenAppUser source, UserToReturnDto destination, string destMember, ResolutionContext officeRepo)
     {
-      var officeName = _context.BankOffices.Where(x => x.Id == source.BankOfficeId).FirstOrDefault().Name;
+      var spec = new BaseSpecification<Office>();
+      var officeName = _officeRepo.ListAsync(spec).Result.Where(x => x.Id == source.BankOfficeId).FirstOrDefault().Name;
       return officeName;
     }
   }

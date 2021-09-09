@@ -15,7 +15,8 @@ using Core.Extensions;
 using Core.Identity;
 using Core.Models.Contracts;
 using Infrastructure.Services;
-using Infrastructure.Services.TokenService;
+using Bot.Identity.Services;
+using Bot.Identity;
 
 namespace WebAPI.Controllers
 {

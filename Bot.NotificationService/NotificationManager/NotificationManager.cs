@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Bot.Infrastructure.Specifications;
 using Core.Dtos;
 using Core.Models;
-using Infrastructure.Data.Repos.GenericRepository;
-using Infrastructure.Data.Spec;
+using Infrastructure.Database;
 using Infrastructure.Services.TelegramService;
 using Microsoft.Extensions.Logging;
 
@@ -37,7 +37,8 @@ namespace NotificationService.Notification
 
     public Task ExecuteRegularJob(string jobId)
     {
-      var items = _itemsRepo.ListAllAsync().Result;
+      var spec = new ItemSpecification();
+      var items = _itemsRepo.ListAsync(spec).Result;
       var item = items.Where(x => x.JobId == jobId).FirstOrDefault();
       var messageToSend = GetRegularMessageWithSpeakerAsync(item.MessageText).Result;
       _logger.LogInformation($"{DateTime.Now} было отправлено сообщение {messageToSend} в чат {item.ChatId}");
@@ -52,7 +53,8 @@ namespace NotificationService.Notification
 
     public Task ExecuteHappyBirthdayJob(string jobId)
     {
-      var items = _itemsRepo.ListAllAsync().Result;
+      var spec = new ItemSpecification();
+      var items = _itemsRepo.ListAsync(spec).Result;
       var item = items.Where(x => x.JobId == jobId).FirstOrDefault();
       var membersWithBirthday = GetMessageForBirthdayMembers().Result;
 

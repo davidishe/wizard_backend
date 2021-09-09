@@ -7,8 +7,6 @@ using Core.Dtos;
 using Infrastructure.Helpers;
 using Core.Identity;
 using Core.Models;
-using Infrastructure.Data.Repos.GenericRepository;
-using Infrastructure.Data.Spec;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -17,6 +15,9 @@ using System;
 using Core.Extensions;
 using NotificationService.JobManagment;
 using NotificationService.Notification;
+using Infrastructure.Database;
+using Bot.Infrastructure.Specifications;
+using Core.Helpers;
 
 namespace WebAPI.Controllers
 {

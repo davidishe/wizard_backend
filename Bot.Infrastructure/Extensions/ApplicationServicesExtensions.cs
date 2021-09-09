@@ -3,10 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Infrastructure.Services;
 using Infrastructure.Services.ResponseCacheService;
-using Infrastructure.Services.TokenService;
 using Infrastructure.Errors;
-using Infrastructure.Data.Repos.GenericRepository;
-using Infrastructure.Data.UnitOfWork;
+using Infrastructure.Database;
+using Infrastructure.Database.UnitOfWork;
 
 namespace Infrastructure.Extensions
 {
@@ -15,7 +14,6 @@ namespace Infrastructure.Extensions
     public static IServiceCollection AddApplicationServices(this IServiceCollection services)
     {
       services.AddSingleton<IResponseCacheService, ResponseCacheService>();
-      services.AddScoped<ITokenService, TokenService>();
       services.AddScoped(typeof(IGenericRepository<>), (typeof(GenericRepository<>)));
       services.AddScoped<IUnitOfWork, UnitOfWork>();
 

@@ -1,11 +1,9 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Bot.Infrastructure.Specifications;
 using Core.Models;
-using Infrastructure.Data.Contexts;
-using Infrastructure.Data.Repos.GenericRepository;
-using Infrastructure.Data.Spec;
+using Infrastructure.Database;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace WebAPI.Controllers
 {

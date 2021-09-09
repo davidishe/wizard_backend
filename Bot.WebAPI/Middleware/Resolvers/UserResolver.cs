@@ -1,10 +1,11 @@
 using System.Linq;
 using System.Security.Claims;
 using AutoMapper;
+using Bot.Identity;
+using Bot.Identity.Database;
 using Core.Dtos;
 using Core.Identity;
 using Core.Models;
-using Infrastructure.Data.Contexts;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;

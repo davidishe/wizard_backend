@@ -8,8 +8,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
-using Infrastructure.Data.Contexts;
-using Core.Extensions;
 using WebAPI.Middleware;
 using StackExchange.Redis;
 using Infrastructure.Extensions;
@@ -17,6 +15,11 @@ using Microsoft.Extensions.Hosting;
 using Hangfire;
 using Microsoft.OpenApi.Models;
 using NotificationService.Extensions;
+using Bot.Infrastructure.Database;
+using Bot.Services.Telegram.Extensions;
+using Bot.Identity;
+using Bot.Identity.Database.Extensions;
+using Bot.Identity.Database;
 
 namespace WebAPI
 {
@@ -43,7 +46,7 @@ namespace WebAPI
     public void ConfigureServices(IServiceCollection services)
     {
 
-      services.AddDbContext<DataContext>(options => options.UseSqlServer(_config.GetConnectionString("DefaultConnection")));
+      services.AddDbContext<AppDbContext>(options => options.UseSqlServer(_config.GetConnectionString("DefaultConnection")));
       services.AddDbContext<IdentityContext>(options => options.UseSqlServer(_config.GetConnectionString("IdentityConnection")));
 
 

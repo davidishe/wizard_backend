@@ -7,8 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Core.Dtos;
 using Core.Identity;
-using Infrastructure.Services;
-using Core.Dtos.Identity;
+using Bot.Identity.Services;
 
 namespace WebAPI.Controllers
 {

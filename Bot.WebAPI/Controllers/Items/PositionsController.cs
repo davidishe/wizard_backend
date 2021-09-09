@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Core.Identity;
 using Infrastructure.Services;
+using Bot.Identity.Services;
 
 namespace WebAPI.Controllers
 {
