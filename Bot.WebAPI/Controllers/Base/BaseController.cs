@@ -5,6 +5,7 @@ using Bot.Infrastructure.Specifications;
 using Core.Models;
 using Infrastructure.Database;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace WebAPI.Controllers
 {
@@ -61,7 +62,7 @@ namespace WebAPI.Controllers
     {
       await SetTimeOut();
       if (entity == null)
-        return BadRequest("Вы отпраили пустой объект");
+        return BadRequest("Вы отправили нам пустой объект");
 
       if (!(entity.Id >= 1))
         return BadRequest("У объекта должен быть id");
