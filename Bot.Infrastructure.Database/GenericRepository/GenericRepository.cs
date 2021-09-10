@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using Core.Models;
 using Bot.Infrastructure.Database;
 using Bot.Infrastructure.Specifications;
+using System;
+using Microsoft.Extensions.Logging;
 
 namespace Infrastructure.Database
 {
@@ -12,11 +14,17 @@ namespace Infrastructure.Database
   {
 
     private readonly AppDbContext _context;
+    private readonly ILogger<GenericRepository<T>> _logger;
+
+
+
     public GenericRepository(
-      AppDbContext context
+      AppDbContext context,
+      ILogger<GenericRepository<T>> logger
     )
     {
       _context = context;
+      _logger = logger;
     }
 
 
@@ -49,6 +57,9 @@ namespace Infrastructure.Database
 
     public async Task<T> AddEntityAsync(T entity)
     {
+      if (entity == null)
+        _logger.LogCritical("Объект не может быть пустым");
+
       var updatedEntity = await _context.Set<T>().AddAsync(entity);
       SaveChanges();
       return updatedEntity.Entity;
@@ -63,10 +74,20 @@ namespace Infrastructure.Database
     }
 
 
-    void IGenericRepository<T>.Delete(T entity)
+    public bool Delete(T entity)
     {
-      _context.Set<T>().Remove(entity);
-      SaveChanges();
+      try
+      {
+        _context.Set<T>().Remove(entity);
+        SaveChanges();
+        return true;
+      }
+      catch (Exception ex)
+      {
+        _logger.LogError(new Guid().ToString(), ex, "Ошибка при удалении объекта");
+        return false;
+      }
+
     }
 
 

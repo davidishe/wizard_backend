@@ -29,27 +29,18 @@ namespace WebAPI.Controllers
   {
 
     private readonly IGenericRepository<Member> _membersRepo;
-    private readonly IGenericRepository<ItemType> _itemTypeRepo;
-    private readonly IGenericRepository<ItemSubType> _itemRegionRepo;
-    private readonly IGenericRepository<Office> _officeRepo;
     private readonly IMapper _mapper;
     private readonly UserManager<HavenAppUser> _userManager;
 
 
     public MembersController(
       IGenericRepository<Member> membersRepo,
-      IGenericRepository<ItemType> productTypeRepo,
-      IGenericRepository<ItemSubType> productRegionRepo,
-      IGenericRepository<Office> officeRepo,
       IMapper mapper,
       UserManager<HavenAppUser> userManager
     )
     {
       _membersRepo = membersRepo;
-      _itemTypeRepo = productTypeRepo;
-      _itemRegionRepo = productRegionRepo;
       _mapper = mapper;
-      _officeRepo = officeRepo;
       _userManager = userManager;
     }
 

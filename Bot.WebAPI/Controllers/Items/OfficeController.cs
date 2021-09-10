@@ -10,6 +10,7 @@ using Core.Dtos;
 using Infrastructure.Helpers;
 using Core.Models;
 using Infrastructure.Database;
+using Bot.Core.Dtos;
 
 namespace WebAPI.Controllers
 {

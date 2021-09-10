@@ -14,7 +14,7 @@ namespace Infrastructure.Database
     Task<int> CountAsync(ISpecification<T> spec);
     Task<T> AddEntityAsync(T entity);
     T Update(T entity);
-    void Delete(T entity);
+    bool Delete(T entity);
 
 
   }

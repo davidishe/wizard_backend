@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Bot.Core.Dtos;
 using Bot.Infrastructure.Specifications;
 using Core.Models;
 using Infrastructure.Database;
@@ -38,6 +39,45 @@ namespace WebAPI.Controllers
     {
       await SetTimeOut();
       var entity = await _repo.GetByIdAsync(id);
+      return Ok(entity);
+    }
+
+    [HttpPost]
+    [Route("create")]
+    public async Task<ActionResult<IReadOnlyList<TEntity>>> Create(TEntity entity)
+    {
+      await SetTimeOut();
+      if (entity == null)
+        return BadRequest("Вы отправили пустой объект");
+
+      var entityToReturn = await _repo.AddEntityAsync(entity as TEntity);
+      return Ok(entityToReturn);
+    }
+
+
+    [HttpPut]
+    [Route("update")]
+    public async Task<ActionResult<IReadOnlyList<TEntity>>> Update(TEntity entity)
+    {
+      await SetTimeOut();
+      if (entity == null)
+        return BadRequest("Вы отпраили пустой объект");
+
+      if (!(entity.Id >= 1))
+        return BadRequest("У объекта должен быть id");
+
+      _repo.Update(entity);
+      return Ok(entity);
+    }
+
+
+    [HttpDelete]
+    [Route("delete")]
+    public async Task<ActionResult<IReadOnlyList<TEntity>>> Delete([FromQuery] int id)
+    {
+      await SetTimeOut();
+      var entity = await _repo.GetByIdAsync(id);
+      _repo.Delete(entity);
       return Ok(entity);
     }
 
