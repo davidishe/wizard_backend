@@ -9,14 +9,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Infrastructure.Data;
 using Core.Dtos;
-using Infrastructure.Errors;
 using Infrastructure.Helpers;
-using Core.Extensions;
 using Core.Identity;
 using Core.Models.Contracts;
 using Infrastructure.Services;
 using Bot.Identity.Services;
 using Bot.Identity;
+using Bot.Core.Responses;
+using Bot.Identity.Extensions;
 
 namespace WebAPI.Controllers
 {

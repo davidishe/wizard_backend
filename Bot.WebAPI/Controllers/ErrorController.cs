@@ -1,5 +1,5 @@
+using Bot.Core.Responses;
 using Microsoft.AspNetCore.Mvc;
-using Infrastructure.Errors;
 
 namespace WebAPI.Controllers
 {

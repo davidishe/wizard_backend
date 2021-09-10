@@ -1,10 +1,7 @@
 using System.Collections.Generic;
-using System.IO;
-using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using AutoMapper;
 using Core.Dtos;
-using Infrastructure.Helpers;
 using Core.Identity;
 using Core.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -12,13 +9,10 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using Core.Extensions;
-using NotificationService.JobManagment;
-using NotificationService.Notification;
 using Bot.Core.Validators;
-using Infrastructure.Errors;
 using Infrastructure.Database;
 using Bot.Infrastructure.Specifications;
+using Bot.Identity.Extensions;
 
 namespace WebAPI.Controllers
 {
@@ -79,17 +73,7 @@ namespace WebAPI.Controllers
 
     #endregion
 
-    #region 2. Get regions & types functionality
 
-    [AllowAnonymous]
-    [HttpGet]
-    [Route("regions")]
-    public async Task<ActionResult<List<Region>>> GetRegionsAsync()
-    {
-      Region[] items = new Region[] { new Region { Name = "Вологда" }, new Region { Name = "Калуга" }, new Region { Name = "Пенза" } };
-      return Ok(items);
-    }
-    #endregion
 
     #region 3. Products CRUD functionality
     /*

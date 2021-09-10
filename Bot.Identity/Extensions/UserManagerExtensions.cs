@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Core.Identity;
 
-namespace Core.Extensions
+namespace Bot.Identity.Extensions
 {
   public static class UserManagerExtensions
   {

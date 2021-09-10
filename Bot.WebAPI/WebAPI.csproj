@@ -44,10 +44,10 @@
 
 
   </ItemGroup>
+
   <ItemGroup>
     <Folder Include="wwwroot\Assets\**"/>
     <Folder Include="Assets\Images\**"/>
-    <Folder Include="Assets\Documents\"/>
   </ItemGroup>
 
 </Project>

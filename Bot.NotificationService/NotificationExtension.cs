@@ -1,6 +1,6 @@
 using System.Linq;
+using Bot.Core.Responses;
 using Hangfire;
-using Infrastructure.Errors;
 using Infrastructure.Services.TelegramService;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;

@@ -1,6 +1,6 @@
 using System;
 
-namespace Infrastructure.Errors
+namespace Bot.Core.Responses
 {
   public class ApiResponse
   {

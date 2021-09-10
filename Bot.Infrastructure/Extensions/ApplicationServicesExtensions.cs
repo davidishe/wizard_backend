@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Infrastructure.Services;
 using Infrastructure.Services.ResponseCacheService;
-using Infrastructure.Errors;
 using Infrastructure.Database;
 using Infrastructure.Database.UnitOfWork;
+using Bot.Core.Responses;
 
 namespace Infrastructure.Extensions
 {

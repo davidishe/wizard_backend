@@ -72,9 +72,6 @@ namespace Identity.Database.SeedData
 
 
 
-
-
-
       }
       catch (Exception ex)
       {

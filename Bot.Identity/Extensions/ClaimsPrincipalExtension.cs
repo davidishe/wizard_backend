@@ -1,7 +1,7 @@
 using System.Linq;
 using System.Security.Claims;
 
-namespace Core.Extensions
+namespace Bot.Identity.Extensions
 {
   public static class ClaimsPrincipalExtension
   {

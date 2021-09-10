@@ -9,8 +9,8 @@ using Core.Dtos;
 using Core.Identity;
 using Infrastructure.Services;
 using Core.Dtos.Identity;
-using Core.Extensions;
 using Bot.Identity.Services;
+using Bot.Identity.Extensions;
 
 namespace WebAPI.Controllers
 {

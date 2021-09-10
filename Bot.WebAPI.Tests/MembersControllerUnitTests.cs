@@ -21,11 +21,7 @@ namespace Bot.WebAPI.Tests
   {
 
     private readonly MembersController _controller;
-
     private readonly IGenericRepository<Member> _membersRepo;
-    private readonly IGenericRepository<ItemType> _itemTypeRepo;
-    private readonly IGenericRepository<ItemSubType> _itemRegionRepo;
-    private readonly IGenericRepository<Office> _officeRepo;
     private readonly IMapper _mapper;
     private readonly UserManager<HavenAppUser> _userManager;
 
@@ -35,9 +31,6 @@ namespace Bot.WebAPI.Tests
     {
       _controller = new MembersController(
         _membersRepo,
-        _itemTypeRepo,
-        _itemRegionRepo,
-        _officeRepo,
         _mapper,
         _userManager
       );

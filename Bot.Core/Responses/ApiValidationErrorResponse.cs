@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Infrastructure.Errors
+namespace Bot.Core.Responses
 {
   public class ApiValidationErrorResponse : ApiResponse
   {

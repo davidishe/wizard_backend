@@ -4,20 +4,18 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using AutoMapper;
 using Core.Dtos;
-using Infrastructure.Helpers;
 using Core.Identity;
 using Core.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using Core.Extensions;
 using NotificationService.JobManagment;
 using NotificationService.Notification;
 using Infrastructure.Database;
 using Bot.Infrastructure.Specifications;
 using Core.Helpers;
+using Bot.Identity.Extensions;
 
 namespace WebAPI.Controllers
 {

@@ -17,53 +17,13 @@ namespace WebAPI.Controllers
 
 
   [AllowAnonymous]
-  public class TypesController : BaseApiController
+  public class TypesController : BaseController<ItemType>
   {
 
 
-    private readonly IGenericRepository<ItemType> _typesRepo;
-
-
-    public TypesController(IGenericRepository<ItemType> typeRepo)
+    public TypesController(IGenericRepository<ItemType> context) : base(context)
     {
-      _typesRepo = typeRepo;
     }
-
-
-
-
-    #region 2. Get regions & types functionality
-
-    [AllowAnonymous]
-    [HttpGet]
-    [Route("all")]
-    public async Task<ActionResult<IReadOnlyList<ItemType>>> GetProductRegionsByIdAsync()
-    {
-      var spec = new BaseSpecification<ItemType>();
-      var items = await _typesRepo.ListAsync(spec);
-      await SetTimeOut();
-      return Ok(items);
-    }
-
-
-    [AllowAnonymous]
-    [HttpPost]
-    [Route("create")]
-    public async Task<ActionResult<IReadOnlyList<ItemType>>> CreateProductRegionAsync(ItemType animalRegion)
-    {
-      var product = await _typesRepo.AddEntityAsync(animalRegion);
-      await SetTimeOut();
-      return Ok(product);
-    }
-
-
-    private async Task<bool> SetTimeOut()
-    {
-      await Task.Delay(10);
-      return true;
-    }
-
-    #endregion
 
   }
 }

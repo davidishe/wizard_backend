@@ -11,14 +11,17 @@
   </ItemGroup>
 
 
-    <ItemGroup>
-      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.14"/>
-      <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.1"/>
-      <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.14"/>
-      <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.14"/>
-    </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.14"/>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.1"/>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.14"/>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.14"/>
+  </ItemGroup>
 
 
+  <ItemGroup>
+    <None Include="Seed\SeedData\**" CopyToOutputDirectory="PreserveNewest"/>
+  </ItemGroup>
 
 
 </Project>

@@ -1,4 +1,4 @@
-namespace Infrastructure.Errors
+namespace Bot.Core.Responses
 {
   public class ApiException : ApiResponse
   {

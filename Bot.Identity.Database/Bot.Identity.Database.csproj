@@ -14,6 +14,12 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.14"/>
   </ItemGroup>
 
+  
+  <ItemGroup>
+    <None Include="Seed\SeedData\**" CopyToOutputDirectory="PreserveNewest"/>
+  </ItemGroup>
+
+
 
 
 
