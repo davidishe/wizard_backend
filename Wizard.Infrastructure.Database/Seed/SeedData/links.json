@@ -1,0 +1,32 @@
+[
+  {
+    "Url": "https://yandex.ru/",
+    "ClientName": "Ромашка",
+    "DocumentNumber": "12333"
+  },
+  {
+    "Url": "https://www.google.ru/",
+    "ClientName": "Ромашка",
+    "DocumentNumber": "12333"
+  },
+  {
+    "Url": "https://www.microsoft.com/ru-ru/",
+    "ClientName": "Ромашка",
+    "DocumentNumber": "12333"
+  },
+  {
+    "Url": "https://gitlab.com/",
+    "ClientName": "Ромашка",
+    "DocumentNumber": "12333"
+  },
+  {
+    "Url": "https://github.com/",
+    "ClientName": "Ромашка",
+    "DocumentNumber": "12333"
+  },
+  {
+    "Url": "https://astral.ru/",
+    "ClientName": "Ромашка",
+    "DocumentNumber": "12333"
+  }
+]
