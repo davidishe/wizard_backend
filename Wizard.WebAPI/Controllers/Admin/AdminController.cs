@@ -47,7 +47,7 @@ namespace WebAPI.Controllers
     [Route("users/all")]
     public async Task<ActionResult<List<UserToReturnDto>>> GetAllUsers()
     {
-      var users = await _userManager.Users.Include(x => x.Address).Include(z => z.UserRoles).Include(p => p.UserPosition).ToListAsync();
+      var users = await _userManager.Users.Include(x => x.Address).Include(z => z.UserRoles).ToListAsync();
       var usersToReturn = _mapper.Map<List<AppUser>, List<UserToReturnDto>>(users);
 
       if (usersToReturn != null)

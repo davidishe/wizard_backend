@@ -11,7 +11,6 @@ namespace WebAPI.Helpers
     {
       CreateMap<AppUser, UserToReturnDto>()
         .ForMember(d => d.PictureUrl, m => m.MapFrom(s => s.PictureUrl))
-        .ForMember(d => d.UserPosition, m => m.MapFrom(s => s.UserPosition.Name))
         .ForMember(d => d.PictureUrl, m => m.MapFrom<UrlPictureForUserReslover>())
         .ForMember(d => d.UserRoles, m => m.MapFrom<UserRolesReslover>());
 

@@ -14,8 +14,6 @@ namespace Wizard.Identity.Database
     }
 
     public DbSet<RefreshToken> RefreshTokens { get; set; }
-    public DbSet<UserPosition> UserPosition { get; set; }
-
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

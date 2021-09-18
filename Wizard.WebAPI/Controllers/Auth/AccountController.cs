@@ -129,8 +129,6 @@ namespace WebAPI.Controllers
       user.DisplayName = userDto.DisplayName;
       user.UserDescription = userDto.UserDescription;
       user.BankOfficeId = (int)userDto.BankOfficeId;
-      user.UserPositionId = (int)userDto.UserPositionId;
-
 
       var result = _userManager.UpdateAsync(user).Result;
       return Ok(result);
